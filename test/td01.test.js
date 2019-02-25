@@ -122,7 +122,7 @@ test('exercice 7.6', () => {
 
 test('merge objects', () => {
   expect(mergeObjects).to.be.a('function')
-  expect(mergeObjects([{ a: 1, b: 2 }, { b: 3, c: 4 }])).to.eq({ a: 1, b: 3, c: 4 })
+  expect(mergeObjects([{ a: 1, b: 2 }, { b: 3, c: 4 }])).to.deep.eq({ a: 1, b: 3, c: 4 })
 })
 
 test('union of arrays', () => {

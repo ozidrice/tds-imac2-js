@@ -170,12 +170,28 @@ export const mergeObjects = (objects) => objects.reduce( (acc, obj) => ({...acc,
 // (aka leur concatenation, sans les éléments en double)
 
 export const union = (arr1, arr2) => {
-    arr1.concat(arr2)
+    const existInTable = (val, tab) => (tab.indexOf(val) !== -1)
+    const addIfNotExist = (val, tab) => { 
+        if(!existInTable(val,tab))
+            tab = [...tab, val]
+        return tab
+    }
+
+    let arr = []
+    arr1.forEach( (val) => arr = addIfNotExist(val, arr))
+    arr2.forEach( (val) => arr = addIfNotExist(val, arr))
+    return arr 
 }
 // Ecrire la fonction qui prendra un tableau de tableaux et renverra la version aplatie (un seul tableau avec tous les éléments)
 // /!\ Vous prendrez en compte les tableaux imbriqués
-
-export const flatten = (arr) => {} // TODO
+export const flatten = (arr) => {    
+    if(!Array.isArray(arr))
+        return arr
+    let flatArr = [];
+    arr.forEach( (elem) => { 
+        flatArr = [...flatArr, , flatten(elem)]
+    })
+}
 
 // Ecrire une fonction qui, pour un tableau et un élément, renvoie le tableau où l'on aura placé cet élément entre chaque
 // membre du tableau.
